@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Flu">
+    
+    <title>
+        
+            Setup Hexo in Windows |
+        
+        A Segmentation Fault
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"restinpease.github.io","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/logo.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                A Segmentation Fault
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Setup Hexo in Windows</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Flu</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-04-25 18:35:46</span>
+        <span class="mobile">2022-04-25 18:35</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Website/">Website</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>As a fan of Windows, I tried to set up hexo in WSL2. Apparently, I failed due to the endless connection error. Otherwise this post would be named as Setup Hexo in WSL2. Pure Windows is fine. I hope this basic instruction is helpful to someone that does not have a Linux machine but still wants to have a hexo blog.</p>
+<h2 id="Some-tools"><a href="#Some-tools" class="headerlink" title="Some tools"></a>Some tools</h2><p><em>1. Windows Terminal</em><br>It is not necessary to install a Windows Terminal, but I strongly recommend to have one.<br>You can search for Windows Terminal in Microsoft Store to install it.</p>
+<p><em>2. Visual Studio Code</em><br>Download and install. Please.</p>
+<h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><p><em>1. Download Node.js .msi installer</em><br>Visit the offcial Node.js website <a class="link"   target="_blank" rel="noopener" href="https://nodejs.org/en/" >https://nodejs.org/en/<i class="fas fa-external-link-alt"></i></a> and download either LTS or Latest version for your Windows OS.</p>
+<p><em>2. Running the installer</em><br>Double click on the .msi installer and follow the instructions to install Node.js on your computer.</p>
+<p><em>3. Verify that Node.js is installed or not</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\[username]&gt; node -v</span><br><span class="line">v18.0.0</span><br><span class="line">C:\Users\[username]&gt; npm -v</span><br><span class="line">8.6.0</span><br></pre></td></tr></table></figure>
+<p><em>4. Troubleshooting</em><br>If you get some error messages, you should set the system variable PATH for node.js as follows:</p>
+<blockquote>
+<p>C:\Users\[username]\AppData\Roaming\npm<br>C:\Program Files\nodejs (Path to the nodejs folder)</p>
+</blockquote>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><em>1. Create a base folder for hexo and install hexo</em><br>Open <code>cmd</code> in Windows Terminal, <code>cd</code> hexo base folder, and run this command.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>If you see messages like this, you are on the right track.</p>
+<blockquote>
+<p>added 56 packages, changed 3 packages, and audited 60 packages in 40s</p>
+<p>14 packages are looking for funding<br> run <code>npm fund</code> for details</p>
+<p>found 0 vulnerabilities</p>
+</blockquote>
+<p>It will take a while if your connection is unstable. If it fails, run this command again.<br>Make sure you use cmd instead of powershell. Otherwise you will be upset when you try to run hexo commands.</p>
+<p><em>2. Create an empty folder for your hexo blog</em><br><code>cd</code> is new empty folder, and run this command to initialize hexo in this folder.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p><em>3. Run hexo on localhost</em><br>Run this command to start the local hexo server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>If you see this in command line, congratulations, you are half done!</p>
+<blockquote>
+<p>Hexo is running at <a class="link"   target="_blank" rel="noopener" href="http://localhost:4000/" >http://localhost:4000<i class="fas fa-external-link-alt"></i></a> . Press Ctrl+C to stop.</p>
+</blockquote>
+<p>Run this command to install hexo git deployer.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="Git-and-GitHub"><a href="#Git-and-GitHub" class="headerlink" title="Git and GitHub"></a>Git and GitHub</h2><h3 id="A-second-git-account"><a href="#A-second-git-account" class="headerlink" title="A second git account"></a>A second git account</h3><p>If you want to use your old GitHub account, you can skip this part.</p>
+<p><em>1. Create another GitHub account</em><br>I have nothing to say about it.</p>
+<p><em>2. Generate SSH key for your new account</em><br>You need two SSH key pairs for your two accounts, say public and blog. If you have used  <code>ssh-keygen.exe -t rsa -C &quot;publicemail@somemail.com&quot;</code> to generate <code>id_rsa</code> and <code>id_rsa.pub</code>, you might find them in <code>C:\Users\[username]\.ssh</code> folder.<br>Open a new git-bash in this <code>.ssh</code> folder and generate the second SSH key pairs by</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen.exe -t rsa -C &quot;blogemail@somemail.com&quot; -f id_newid</span><br></pre></td></tr></table></figure>
+<p>Two files <code>id_newid</code> and <code>id_newid.pub</code> will show up in <code>C:\Users\[username]\.ssh</code> folder. Add this <code>.pub</code> file to your new GitHub account.</p>
+<p><em>3. Edit config file</em><br>Find config file in <code>C:\Users\[username]\.ssh</code> folder. If there is no config file, create a new empty .txt file, rename it to <code>config</code>, and delete <code>.txt</code>.</p>
+<p>Edit config file like this:</p>
+<blockquote>
+<p># public<br>Host github_public<br>Hostname ssh.github.com<br>IdentityFile ~&#x2F;.ssh&#x2F;id_rsa<br>port 22</p>
+<p># myblog<br>Host github_blog<br>Hostname ssh.github.com<br>IdentityFile ~&#x2F;.ssh&#x2F;id_newid<br>port 22</p>
+</blockquote>
+<p><em>4. Check if you did it</em><br>Try these two commands in git-bash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github_public</span><br><span class="line">ssh -T git@github_blog</span><br></pre></td></tr></table></figure>
+<p>If you get this information, you succeed.</p>
+<blockquote>
+<p>Hi xxx! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
+</blockquote>
+<p><em>5. Modify git config settings</em><br>Delete global settings and add local settings</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># delete global settings</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> user.name</span><br><span class="line">git config --global --<span class="built_in">unset</span> user.email</span><br><span class="line"></span><br><span class="line"><span class="comment"># add local settings for repositories</span></span><br><span class="line">git config --<span class="built_in">local</span> user.name [your_public_or_blog_account]</span><br><span class="line">git config --<span class="built_in">local</span> user.email [your_public_or_blog_email]</span><br></pre></td></tr></table></figure>
+
+<p>When you add remote repositories, you need to modify host like this instead of using <code>git@github.com</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github_public:xxx/xxxx.git # public user</span><br><span class="line">git remote add origin git@github_blog:xxx/xxxx.git # blog user</span><br></pre></td></tr></table></figure>
+
+<h3 id="A-Personal-GitHub-Page"><a href="#A-Personal-GitHub-Page" class="headerlink" title="A Personal GitHub Page"></a>A Personal GitHub Page</h3><p>Create a new Repository, name it as <code>[your_github_account].github.io</code>.</p>
+<p>In the home page of the new repository, choose tab <code>Settings</code>. In the GitHub <code>Pages</code> section, change Source from <code>None</code> to <code>main</code> branch, and click on Save button next to it.</p>
+<h3 id="Deploy-your-hexo-blog-on-github"><a href="#Deploy-your-hexo-blog-on-github" class="headerlink" title="Deploy your hexo blog on github"></a>Deploy your hexo blog on github</h3><p>Do you remember the git local user settings? Forget it. If you use <code>hexo deploy</code> to deploy your blog, it will always search for global user. So set it to your blog user account. If you use <code>git push</code>, then there is no need to bother.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name [your_blog_account]</span><br><span class="line">git config --global user.email [your_blog_address]</span><br></pre></td></tr></table></figure>
+
+<p>Open <code>_config.yml</code> in the root folder of your hexo blog. Change <code>deploy</code> part like this</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: git@github_blog:[your_github_account]/[your_github_account].github.io.git</span><br><span class="line">  branch: main</span><br><span class="line">  message: <span class="string">&quot;a new hexo theme&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Make sure you open <code>cmd</code> in your blog folder.<br>Run this command to build your blog.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p>Run this command to deploy your blog to your GitHub page.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>You can check it on https:&#x2F;&#x2F;[your_blog_account].github.io&#x2F; in a minute.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>Node.js installation: <a class="link"   target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/installation-of-node-js-on-windows/" >https://www.geeksforgeeks.org/installation-of-node-js-on-windows/<i class="fas fa-external-link-alt"></i></a><br>Solution for one PC two git accounts: <a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/107341502" >https://zhuanlan.zhihu.com/p/107341502<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Website/">#Website</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/04/25/a-real-hello-world/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">A Real Hello World</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Flu</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Some-tools"><span class="nav-number">1.</span> <span class="nav-text">Some tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js"><span class="nav-number">2.</span> <span class="nav-text">Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo"><span class="nav-number">3.</span> <span class="nav-text">Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-and-GitHub"><span class="nav-number">4.</span> <span class="nav-text">Git and GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-second-git-account"><span class="nav-number">4.1.</span> <span class="nav-text">A second git account</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-Personal-GitHub-Page"><span class="nav-number">4.2.</span> <span class="nav-text">A Personal GitHub Page</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-your-hexo-blog-on-github"><span class="nav-number">4.3.</span> <span class="nav-text">Deploy your hexo blog on github</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">5.</span> <span class="nav-text">References</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
