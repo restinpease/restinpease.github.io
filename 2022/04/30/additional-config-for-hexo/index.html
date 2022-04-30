@@ -9,7 +9,7 @@
     
     <title>
         
-            Additional Configuration for Hexo |
+            Additional Configurations for Hexo |
         
         A Segmentation Fault
     </title>
@@ -144,7 +144,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Additional Configuration for Hexo</span>
+            <span class="title-hover-animation">Additional Configurations for Hexo</span>
         </div>
 
         
@@ -194,7 +194,7 @@
         
 
         <div class="article-content markdown-body">
-            <p>I added gitalk comment system and read counts. However the gitalk did not work properly. I post this only for testing purposes.</p>
+            <p>I added gitalk comment system and read counts. However the gitalk did not work properly. I post this only for testing purposes. All you need to do is clicking <code>save</code> after modifying any config file. There is not need to <code>git add</code> or <code>git commit</code> if you only want to update your config.</p>
 <h2 id="Add-a-new-theme"><a href="#Add-a-new-theme" class="headerlink" title="Add a new theme"></a>Add a new theme</h2><p>You can look for your theme on <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/themes/" >https://hexo.io/themes/<i class="fas fa-external-link-alt"></i></a> . If you click any link on that page, it will direct you to a github repository. You will always find instructions of how to install the theme on <code>README.md</code>. I prefer <code>git clone</code> way.</p>
 <p>Take theme <code>keep</code> as an example:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd themes</span><br><span class="line">$ git clone git@github.com:XPoet/hexo-theme-keep.git keep</span><br></pre></td></tr></table></figure>
@@ -211,10 +211,24 @@
 <p>If you want to update your <code>keep</code> theme to its latest version</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd themes/keep</span><br><span class="line">$ git fetch</span><br><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
 
-<h2 id="Add-read-counts"><a href="#Add-read-counts" class="headerlink" title="Add read counts"></a>Add read counts</h2><p>Open _config.yml in your <code>themes</code> folder, for example <code>themes/keep/_config.yml</code>. Set <code>busuanzi</code> parameters to <code>true</code>.</p>
+<h2 id="Add-read-counts"><a href="#Add-read-counts" class="headerlink" title="Add read counts"></a>Add read counts</h2><p>Open <code>_config.yml</code> in your <code>themes</code> folder, for example <code>themes/keep/_config.yml</code>. Set <code>busuanzi</code> parameters to <code>true</code>.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br><span class="line">  site_uv: true</span><br><span class="line">  site_pv: true</span><br><span class="line">  page_pv: true</span><br></pre></td></tr></table></figure>
 
-<h2 id="Add-gitalk"><a href="#Add-gitalk" class="headerlink" title="Add gitalk"></a>Add gitalk</h2><p>It does not work properly as I said. I will update it later if I figure it out.</p>
+<h2 id="Add-gitalk"><a href="#Add-gitalk" class="headerlink" title="Add gitalk"></a>Add gitalk</h2><p>It does not work properly at the beginning, but if you wait long enough, it will work.</p>
+<p>Request a GitHub OAuth application via the link <a class="link"   target="_blank" rel="noopener" href="https://github.com/settings/applications/new" >https://github.com/settings/applications/new<i class="fas fa-external-link-alt"></i></a> . When you register a new application, set this information.</p>
+<blockquote>
+<p>Application name: website_comments<br>Homepage URL: [your_personal_link_or_github.io_link]<br>Authorization callback URL: [your_blog_github.io_link]<br>Now you have <code>Client ID</code> and <code>Client secrets</code>.</p>
+</blockquote>
+<p>Create a new GitHub repository <code>website_comments</code> to save the comments for the website. Make sure the repository is <code>public</code> and ✔<code>issues</code>.</p>
+<p>Create a new issue.</p>
+<p>Open <code>_config.yml</code> in your <code>themes</code> folder. <code>gitalk</code> settings in <code>keep</code> is like this</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">comment:</span><br><span class="line">  enable: true</span><br><span class="line">  use: gitalk # values: valine | gitalk | twikoo</span><br><span class="line">  # Gitalk</span><br><span class="line">  # See: https://github.com/gitalk/gitalk</span><br><span class="line">  gitalk:</span><br><span class="line">    github_id: [your_id]  # GitHub repo owner</span><br><span class="line">    repository: website_comments  # Repository name to store issues</span><br><span class="line">    client_id: [your_client_id]  # GitHub Application Client ID</span><br><span class="line">    client_secret: [your_client_secret]  # GitHub Application Client Secret</span><br></pre></td></tr></table></figure>
+
+<p>The <code>_config.yml</code> files of other themes are similar. The <code>gitalk</code> settings in theme <code>next</code> are like this</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># Gitalk</span><br><span class="line"># For more information: https://gitalk.github.io</span><br><span class="line">gitalk:</span><br><span class="line">  enable: true</span><br><span class="line">  github_id: [your_id] # GitHub repo owner</span><br><span class="line">  repo: website_comments # Repository name to store issues</span><br><span class="line">  client_id: [your_client_id] # GitHub Application Client ID</span><br><span class="line">  client_secret: [your_client_secret]  # GitHub Application Client Secret</span><br><span class="line">  admin_user: [your_id] # GitHub repo owner and collaborators, only these guys can initialize gitHub issues</span><br><span class="line">  distraction_free_mode: true # Facebook-like distraction free mode</span><br><span class="line">  # When the official proxy is not available, you can change it to your own proxy address</span><br><span class="line">  proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy address</span><br><span class="line">  # Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span><br><span class="line">  # If you want everyone visiting your site to see a uniform language, you can set a force language value</span><br><span class="line">  # Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span><br><span class="line">  language:</span><br></pre></td></tr></table></figure>
+
+<p>Read ‘_config.yml’ and README.md file, you will eventually know what to do. Cheers.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a class="link"   target="_blank" rel="noopener" href="https://gary5496.github.io/2018/03/hexo-github-setup/" >https://gary5496.github.io/2018/03/hexo-github-setup/<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
 
@@ -426,7 +440,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-a-new-theme"><span class="nav-number">1.</span> <span class="nav-text">Add a new theme</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-read-counts"><span class="nav-number">2.</span> <span class="nav-text">Add read counts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-gitalk"><span class="nav-number">3.</span> <span class="nav-text">Add gitalk</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-a-new-theme"><span class="nav-number">1.</span> <span class="nav-text">Add a new theme</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-read-counts"><span class="nav-number">2.</span> <span class="nav-text">Add read counts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-gitalk"><span class="nav-number">3.</span> <span class="nav-text">Add gitalk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol>
     </div>
 </div>
         </aside>
