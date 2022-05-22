@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Flu">
+    
+    <title>
+        
+            The simplest app for combining flutter and sqlite |
+        
+        A Segmentation Fault
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"restinpease.github.io","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/logo.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                A Segmentation Fault
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">The simplest app for combining flutter and sqlite</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Flu</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-05-22 14:57:58</span>
+        <span class="mobile">2022-05-22 14:57</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Flutter/">Flutter</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>As a newbie to flutter and app development, I wanted to make an application which need to support saving, deleting, and updating data in local storage. After a lot of searching, I found that those sample applications were either too complicated or outdated. The flutter cookbook provides an good example about how to use sqlite in flutter, but it contains only the database part. Therefore, I decided to write maybe the simplest application using flutter and sqlite.</p>
+<p>This application is called “Fridge Manager”. You can store, update, and delete the food information in that app. I only test it in <code>Emulator</code> in <code>Android Studio</code> since I do not have an Android mobile phone. </p>
+<p>This scripts are very naive. I modified them based on the cookbook and some GitHub repository. My priority was to make it work.</p>
+<h2 id="1-Add-the-dependencies"><a href="#1-Add-the-dependencies" class="headerlink" title="1. Add the dependencies"></a>1. Add the dependencies</h2><p>Firstly, you need <code>sqflite</code>, <code>path</code>, and <code>intl</code> packages.</p>
+<ul>
+<li>The sqflite package provides classes and functions to interact with a SQLite database.</li>
+<li>The path package provides functions to define the location for storing the database on disk.</li>
+<li>The intl package provides a common entry point for internationalization related tasks including formating date and time.</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dependencies:</span></span><br><span class="line">  <span class="attr">flutter:</span></span><br><span class="line">    <span class="attr">sdk:</span> <span class="string">flutter</span></span><br><span class="line">  <span class="attr">sqflite:</span></span><br><span class="line">  <span class="attr">path:</span></span><br><span class="line">  <span class="attr">intl:</span></span><br></pre></td></tr></table></figure>
+<p>Click <code>Pub get</code> to install referenced packages.</p>
+<h2 id="2-Database-helper"><a href="#2-Database-helper" class="headerlink" title="2. Database helper"></a>2. Database helper</h2><p>In you <code>lib</code> folder, right-click &gt; New &gt; Dart File and name it <code>db_helper</code></p>
+<h3 id="import-packages"><a href="#import-packages" class="headerlink" title="import packages"></a>import packages</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:async&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/widgets.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:path/path.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:sqflite/sqflite.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Define-the-Food-data-modal"><a href="#Define-the-Food-data-modal" class="headerlink" title="Define the Food data modal"></a>Define the Food data modal</h3><p>We need to define a model to store the food information. It is a <code>class</code> in <code>Dart</code>. For this example, define a <code>Food</code> class that contains four pieces of data: A unique <code>id</code>, the <code>name</code>, the <code>date</code>, and the <code>description</code> of each food.<br>The data need to be converted to <code>Map</code> to store in the database.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line">  <span class="built_in">int?</span> id;</span><br><span class="line">  <span class="built_in">String</span> name;</span><br><span class="line">  <span class="built_in">String</span> date;</span><br><span class="line">  <span class="built_in">String?</span> description;</span><br><span class="line"></span><br><span class="line">  Food(&#123;</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">this</span>.id,</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">this</span>.name,</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">this</span>.date,</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">this</span>.description,</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// Convert a Food into a Map. The keys must correspond to the names of the</span></span><br><span class="line">  <span class="comment">// columns in the database.</span></span><br><span class="line">  <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">dynamic</span>&gt; toMap() &#123;</span><br><span class="line">    <span class="keyword">var</span> map = <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">dynamic</span>&gt;();</span><br><span class="line">    <span class="keyword">if</span> (id != <span class="keyword">null</span>) &#123;</span><br><span class="line">      map[<span class="string">&#x27;id&#x27;</span>] = id;</span><br><span class="line">    &#125;</span><br><span class="line">    map[<span class="string">&#x27;name&#x27;</span>] = name;</span><br><span class="line">    map[<span class="string">&#x27;date&#x27;</span>] = date;</span><br><span class="line">    map[<span class="string">&#x27;description&#x27;</span>] = description;</span><br><span class="line">    <span class="keyword">return</span> map;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Implement toString to make it easier to see information about</span></span><br><span class="line">  <span class="comment">// each food when using the print statement.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">String</span> toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Food&#123;id: <span class="subst">$id</span>, name: <span class="subst">$name</span>, date: <span class="subst">$date</span>, description: <span class="subst">$description</span>&#125;&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Add-database-helper"><a href="#Add-database-helper" class="headerlink" title="Add database helper"></a>Add database helper</h3><p>Create a class named <code>DatabaseHelper</code> and create instance. The symbols including <code>?</code> and <code>!</code> are related to <code>not_initialized_non_nullable_variable</code>. I would figure it out one day. Anyways, if I did not write like this, I got a bunch of errors.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DatabaseHelper</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> DatabaseHelper? _databaseHelper;</span><br><span class="line">  <span class="keyword">static</span> Database? _database;</span><br><span class="line"></span><br><span class="line">  DatabaseHelper._createInstance();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">factory</span> DatabaseHelper() &#123;</span><br><span class="line">    <span class="keyword">if</span>(_databaseHelper == <span class="keyword">null</span>) &#123;</span><br><span class="line">      _databaseHelper = DatabaseHelper._createInstance();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> _databaseHelper!;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This is the basic part of the <code>DatabaseHelper</code> class. Then you need to add more functions to that class (inside the biggest {}).</p>
+<h3 id="Open-the-database-and-create-a-Food-table"><a href="#Open-the-database-and-create-a-Food-table" class="headerlink" title="Open the database and create a Food table"></a>Open the database and create a Food table</h3><p>Before reading and writing data to the database, open a connection to the database. This involves two steps:</p>
+<ul>
+<li>Define the path to the database file using <code>getDatabasesPath()</code> from the <code>sqflite</code> package, combined with the join function from the path package.</li>
+<li>Open the database with the <code>openDatabase()</code> function from <code>sqflite</code>.</li>
+</ul>
+<p>Next, use <code>onCreate</code> to create a table to store information about various Food. For this example, create a table called food that defines the data that can be stored. Each Food contains an id, name, date and description. Therefore, these are represented as four columns in the food table.</p>
+<ul>
+<li><p>The id is a Dart int, and is stored as an INTEGER SQLite Datatype. It is also good practice to use an id as the primary key for the table to improve query and update times.</p>
+</li>
+<li><p>The name is a Dart String, and is stored as a TEXT SQLite Datatype.</p>
+</li>
+<li><p>The date is also a Dart String, and is stored as an TEXT SQLite Datatype.</p>
+</li>
+<li><p>The description is a Dart String, and is stored as an TEXT SQLite Datatype.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Future&lt;Database&gt; <span class="keyword">get</span> database <span class="keyword">async</span> =&gt; _database ??= <span class="keyword">await</span> initializeDatabase();</span><br><span class="line"></span><br><span class="line">Future&lt;Database&gt; initializeDatabase() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="comment">// Avoid errors caused by flutter upgrade.</span></span><br><span class="line">  <span class="comment">// Importing &#x27;package:flutter/widgets.dart&#x27; is required.</span></span><br><span class="line">  WidgetsFlutterBinding.ensureInitialized();</span><br><span class="line">  <span class="comment">// Open the database and store the reference.</span></span><br><span class="line">  Database database = <span class="keyword">await</span> openDatabase(</span><br><span class="line">    <span class="comment">// Set the path to the database. Note: Using the `join` function from the</span></span><br><span class="line">    <span class="comment">// `path` package is best practice to ensure the path is correctly</span></span><br><span class="line">    <span class="comment">// constructed for each platform.</span></span><br><span class="line">    join(<span class="keyword">await</span> getDatabasesPath(), <span class="string">&#x27;food_database.db&#x27;</span>),</span><br><span class="line">    <span class="comment">// When the database is first created, create a table to store food.</span></span><br><span class="line">    onCreate: (db, version) &#123;</span><br><span class="line">      <span class="comment">// Run the CREATE TABLE statement on the database.</span></span><br><span class="line">      <span class="keyword">return</span> db.execute(</span><br><span class="line">        <span class="string">&#x27;CREATE TABLE food(id INTEGER PRIMARY KEY, name TEXT, date TEXT, description TEXT)&#x27;</span>,</span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// Set the version. This executes the onCreate function and provides a</span></span><br><span class="line">    <span class="comment">// path to perform database upgrades and downgrades.</span></span><br><span class="line">    version: <span class="number">1</span>,</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">return</span> database;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Insert-data-to-the-database"><a href="#Insert-data-to-the-database" class="headerlink" title="Insert data to the database"></a>Insert data to the database</h3><p>It takes two steps to insert a kind of food into the food table:</p>
+</li>
+<li><p>Convert the Food into a Map</p>
+</li>
+<li><p>Use the insert() method to store the Map in the food table.</p>
+</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Define a function that inserts food into the database</span></span><br><span class="line">Future&lt;<span class="built_in">int</span>&gt; insertFood(Food food) <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="comment">// Get a reference to the database.</span></span><br><span class="line">  <span class="keyword">final</span> db = <span class="keyword">await</span> database;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Insert the Food into the correct table. You might also specify the</span></span><br><span class="line">  <span class="comment">// `conflictAlgorithm` to use in case the same food is inserted twice.</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">// In this case, replace any previous data.</span></span><br><span class="line">  <span class="keyword">var</span> result = <span class="keyword">await</span> db.insert(</span><br><span class="line">    <span class="string">&#x27;food&#x27;</span>,</span><br><span class="line">    food.toMap(),</span><br><span class="line">    conflictAlgorithm: ConflictAlgorithm.replace,</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Retrieve-the-list-of-Food"><a href="#Retrieve-the-list-of-Food" class="headerlink" title="Retrieve the list of Food"></a>Retrieve the list of Food</h3><p>Now the <code>food</code> is store in the database, query the database for a specific kind of food or a list of all food. This involves two steps:</p>
+<ul>
+<li>Run a query against the food table. This returns a List<Map>.</li>
+<li>Convert the List<Map> into a List<Food>.<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A method that retrieves all the food from the food table.</span></span><br><span class="line">Future&lt;<span class="built_in">List</span>&lt;Food&gt;&gt; getFoodList() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="comment">// Get a reference to the database.</span></span><br><span class="line">  <span class="keyword">final</span> db = <span class="keyword">await</span> database;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Query the table for all The Food.</span></span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">List</span>&lt;<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">dynamic</span>&gt;&gt; maps = <span class="keyword">await</span> db.query(<span class="string">&#x27;food&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Convert the List&lt;Map&lt;String, dynamic&gt; into a List&lt;Food&gt;.</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">List</span>.generate(maps.length, (i) &#123;</span><br><span class="line">    <span class="keyword">return</span> Food(</span><br><span class="line">      id: maps[i][<span class="string">&#x27;id&#x27;</span>],</span><br><span class="line">      name: maps[i][<span class="string">&#x27;name&#x27;</span>],</span><br><span class="line">      date: maps[i][<span class="string">&#x27;date&#x27;</span>],</span><br><span class="line">      description: maps[i][<span class="string">&#x27;description&#x27;</span>],</span><br><span class="line">    );</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Update-a-kind-of-food-in-the-database"><a href="#Update-a-kind-of-food-in-the-database" class="headerlink" title="Update a kind of food in the database"></a>Update a kind of food in the database</h3>After inserting information into the database, you might want to update that information at a later time. You can do this by using the <code>update()</code> method from the <code>sqflite</code> library.<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Future&lt;<span class="built_in">int</span>&gt; updateFood(Food food) <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="comment">// Get a reference to the database.</span></span><br><span class="line">  <span class="keyword">final</span> db = <span class="keyword">await</span> database;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Update the given Food.</span></span><br><span class="line">  <span class="keyword">var</span> result = <span class="keyword">await</span> db.update(</span><br><span class="line">    <span class="string">&#x27;food&#x27;</span>,</span><br><span class="line">    food.toMap(),</span><br><span class="line">    <span class="comment">// Ensure that the Food has a matching id.</span></span><br><span class="line">    where: <span class="string">&#x27;id = ?&#x27;</span>,</span><br><span class="line">    <span class="comment">// Pass the Food&#x27;s id as a whereArg to prevent SQL injection.</span></span><br><span class="line">    whereArgs: [food.id],</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Delete-a-kind-of-food-from-the-database"><a href="#Delete-a-kind-of-food-from-the-database" class="headerlink" title="Delete a kind of food from the database"></a>Delete a kind of food from the database</h3>In addition to inserting and updating the information about the food, you can also remove a kind of food from the database. To delete data, use the <code>delete()</code> method from the <code>sqflite</code> library.<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  Future&lt;<span class="built_in">int</span>&gt; deleteFood(<span class="built_in">int</span> id) <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">// Get a reference to the database.</span></span><br><span class="line">    <span class="keyword">final</span> db = <span class="keyword">await</span> database;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Remove the Food from the database.</span></span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">await</span> db.delete(</span><br><span class="line">      <span class="string">&#x27;food&#x27;</span>,</span><br><span class="line">      <span class="comment">// Use a `where` clause to delete a specific Food.</span></span><br><span class="line">      where: <span class="string">&#x27;id = ?&#x27;</span>,</span><br><span class="line">      <span class="comment">// Pass the Food&#x27;s id as a whereArg to prevent SQL injection.</span></span><br><span class="line">      whereArgs: [id],</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+Now this database helper is done.</li>
+</ul>
+<h2 id="3-Screens"><a href="#3-Screens" class="headerlink" title="3. Screens"></a>3. Screens</h2><p>Now it is time to deal with the user interface. In this app, you need to screens, one for <code>list</code>, and the other for <code>detail</code>. You can check all your food storage in <code>list</code> screen, and add new items in <code>detail</code> screen.</p>
+<p>In you <code>lib</code> folder, right-click &gt; New &gt; Directory and name it <code>screens</code>. Then right-click screens &gt; New &gt; Dart File and create two files: <code>food_detail.dart</code> and  <code>food_list.dart</code>.</p>
+<h3 id="food-detail-screen"><a href="#food-detail-screen" class="headerlink" title="food_detail screen"></a>food_detail screen</h3><h4 id="Import-packages"><a href="#Import-packages" class="headerlink" title="Import packages"></a>Import packages</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:fridge_manager/db_helper.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:intl/intl.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="Create-FoodDetail-StatefulWidget"><a href="#Create-FoodDetail-StatefulWidget" class="headerlink" title="Create FoodDetail StatefulWidget"></a>Create FoodDetail StatefulWidget</h4><p>Create a <code>StatefulWidget</code> by typing <code>stful</code>, then name it <code>FoodDetail</code>. It has two properties: <code>appBarTitle</code> and <code>food</code>.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FoodDetail</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> appBarTitle;</span><br><span class="line">  <span class="keyword">final</span> Food food;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> FoodDetail(<span class="keyword">this</span>.appBarTitle, <span class="keyword">this</span>.food, &#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  State&lt;FoodDetail&gt; createState() =&gt; _FoodDetailState(appBarTitle, food);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>All you need to do is creating a variable like this to call functions created in <code>db_helper.dart</code>:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_FoodDetailState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">FoodDetail</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> appBarTitle;</span><br><span class="line">  <span class="keyword">final</span> Food food;</span><br><span class="line"></span><br><span class="line">  DatabaseHelper databaseHelper = DatabaseHelper();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Then you can call <code>databaseHelper.deleteFood(food.id)</code>, <code>databaseHelper.updateFood(food)</code>, and <code>databaseHelper.insertFood(food)</code> in <code>Widget</code>.</p>
+<h3 id="food-list-screen"><a href="#food-list-screen" class="headerlink" title="food_list screen"></a>food_list screen</h3><p>To be continue…</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>There are many errors caused by <code>non-nullable by default (NNBD) feature</code> in outdated sample codes. Try to add <code>?</code> and <code>!</code> to solve them.<br>A <code>?</code> means this variable could be null when you initialize it.<br>A <code>!</code> means this variable is converted to a non-nullable variable. Before you apply this <code>!</code>, make sure add this <code>if</code>:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (something != <span class="keyword">null</span>) &#123;</span><br><span class="line">    new_something = something!;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>The flutter cookbook &gt; Persist_data_with_SQLite: <a class="link"   target="_blank" rel="noopener" href="https://docs.flutter.dev/cookbook/persistence/sqlite" >https://docs.flutter.dev/cookbook/persistence/sqlite<i class="fas fa-external-link-alt"></i></a><br>A GitHub repository: <a class="link"   target="_blank" rel="noopener" href="https://github.com/ElmouradiAmine/note_keeper" >https://github.com/ElmouradiAmine/note_keeper<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Flutter/">#Flutter</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/05/18/pyinstaller-no-module-named-scipy-spatial-transform-rotation-groups-error/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">pyinstaller - No module named &#39;scipy.spatial.transform._rotation_groups&#39;</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script 
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script >
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '7bc060262774e526baa5',
+                    clientSecret: '6442d0600b3c9fb5f239801ce8966209453c6a83',
+                    repo: 'blog_comments',
+                    owner: 'restinpease',
+                    admin: ['restinpease'],
+                    id: __gitalk__pathname,
+                    language: 'en'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('false') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Flu</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Add-the-dependencies"><span class="nav-number">1.</span> <span class="nav-text">1. Add the dependencies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Database-helper"><span class="nav-number">2.</span> <span class="nav-text">2. Database helper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#import-packages"><span class="nav-number">2.1.</span> <span class="nav-text">import packages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-the-Food-data-modal"><span class="nav-number">2.2.</span> <span class="nav-text">Define the Food data modal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-database-helper"><span class="nav-number">2.3.</span> <span class="nav-text">Add database helper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Open-the-database-and-create-a-Food-table"><span class="nav-number">2.4.</span> <span class="nav-text">Open the database and create a Food table</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Insert-data-to-the-database"><span class="nav-number">2.5.</span> <span class="nav-text">Insert data to the database</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Retrieve-the-list-of-Food"><span class="nav-number">2.6.</span> <span class="nav-text">Retrieve the list of Food</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-a-kind-of-food-in-the-database"><span class="nav-number">2.7.</span> <span class="nav-text">Update a kind of food in the database</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Delete-a-kind-of-food-from-the-database"><span class="nav-number">2.8.</span> <span class="nav-text">Delete a kind of food from the database</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Screens"><span class="nav-number">3.</span> <span class="nav-text">3. Screens</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#food-detail-screen"><span class="nav-number">3.1.</span> <span class="nav-text">food_detail screen</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Import-packages"><span class="nav-number">3.1.1.</span> <span class="nav-text">Import packages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Create-FoodDetail-StatefulWidget"><span class="nav-number">3.1.2.</span> <span class="nav-text">Create FoodDetail StatefulWidget</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#food-list-screen"><span class="nav-number">3.2.</span> <span class="nav-text">food_list screen</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">4.</span> <span class="nav-text">Tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">5.</span> <span class="nav-text">References</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
