@@ -9,7 +9,7 @@
     
     <title>
         
-            pyinstaller - No module named &#39;scipy.spatial.transform._rotation_groups&#39; |
+            Build an auto-reply Mastodon Bot |
         
         A Segmentation Fault
     </title>
@@ -144,7 +144,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">pyinstaller - No module named &#39;scipy.spatial.transform._rotation_groups&#39;</span>
+            <span class="title-hover-animation">Build an auto-reply Mastodon Bot</span>
         </div>
 
         
@@ -161,8 +161,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-05-18 01:22:58</span>
-        <span class="mobile">2022-05-18 01:22</span>
+        <span class="pc">2023-03-23 21:09:58</span>
+        <span class="mobile">2023-03-23 21:09</span>
     </span>
     
     
@@ -171,7 +171,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Bugfix/">Bugfix</a>&nbsp;
+                        <a href="/tags/Mastodon/">Mastodon</a>&nbsp;
                     </li>
                 
             </ul>
@@ -194,20 +194,72 @@
         
 
         <div class="article-content markdown-body">
-            <p>Today I tried to pack my simple python script with <code>pyinstaller</code> in Windows, and I found this error</p>
+            <p>This is a brief introduction about building an auto-reply Mastodon Bot with Python in 10 minutes.</p>
+<h2 id="Prerequests"><a href="#Prerequests" class="headerlink" title="Prerequests"></a>Prerequests</h2><p><em>1. Check your system</em><br>First of all, you need a server or a PC that has Linux system or WSL in Windows.</p>
+<p>Open terminal and check python version</p>
 <blockquote>
-<p>ModuleNotFoundError: No module named ‘scipy.spatial.transform._rotation_groups’</p>
+<p>python –version<br>python3 –version</p>
 </blockquote>
-<p>The reason for this error is explained here</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/pyinstaller/pyinstaller/issues/5440#issuecomment-753600979" >https://github.com/pyinstaller/pyinstaller/issues/5440#issuecomment-753600979<i class="fas fa-external-link-alt"></i></a> </p>
+<p>Please make sure your Python version number is higher than or equal to 3.8. and your pip version is as high as possible. Mine is 23.0.1.</p>
+<p><em>2. Make an application</em></p>
+<ul>
+<li>Click ⚙ (Preferences) -&gt; &lt;&#x2F;&gt; Development -&gt; New application</li>
+<li>Name your application whatever you like</li>
+<li>Select <em>read</em> and <em>write</em> in Scopes</li>
+<li>Click SUBMIT</li>
+</ul>
+<p>Now your have 3 strings: <code>Client key</code>, <code>Client secret</code>, and <code>Your access token</code>.<br>Create a text file and name it as <code>clientcred.secret</code>. Copy and paste the <code>Client key</code> and <code>Client secret</code> into the first and second line (The meaningless string!). The third line will be the api base url of your bot, such as <a class="link"   target="_blank" rel="noopener" href="https://mastodon.social/" >https://mastodon.social<i class="fas fa-external-link-alt"></i></a><br>Create another text file and name it as <code>usercred.secret</code>. Copy and past the <code>Your access token</code> into the first line (The meaningless string! Again!). The second line will be the api base url as well. </p>
+<h2 id="Install-packages"><a href="#Install-packages" class="headerlink" title="Install packages"></a>Install packages</h2><p>Here are some necessary packages for the auto-reply bot. You can install them via those commands:</p>
 <blockquote>
-<p>The problem is that <code>scipy.spatial.transform.rotation</code> is a compiled module, so its dependencies (in this case <code>scipy.spatial.transform._rotation_groups</code>) are not automatically picked up by dependency analysis.</p>
-<p>Adding <code>scipy.spatial.transform._rotation_groups</code> to <code>hiddenimports</code>, either in your <code>.spec</code> file or via <code>--hiddenimport</code> command-line switch should fix the problem.</p>
+<p>pip install Mastodon.py<br>pip install datetime<br>pip install html2text</p>
 </blockquote>
-<p>Here is a solution</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/pyinstaller/pyinstaller/issues/5454" >https://github.com/pyinstaller/pyinstaller/issues/5454<i class="fas fa-external-link-alt"></i></a> </p>
-<p>I realized that these two issues were closed. The simplest way to solve this problem is upgrading my <code>pyinstaller</code> to its  <em>latest</em> version (now is <code>5.0.1</code>).</p>
-<p>Problem solved.</p>
+<p>If it is not working, try to replace <code>pip</code> by <code>pip3</code>.</p>
+<h2 id="Time-to-code"><a href="#Time-to-code" class="headerlink" title="Time to code"></a>Time to code</h2><p>Create a text file called <code>main.py</code>, put everything in it and run it by</p>
+<blockquote>
+<p>python main.py</p>
+</blockquote>
+<p>Make sure <code>main.py</code>, <code>usercred.secret</code>, <code>clientcred.secret</code> are in the same folder.</p>
+<p><em>1. Test if you can interact with your account</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from mastodon import Mastodon</span><br><span class="line">mastodon = Mastodon(client_id=&#x27;&#x27;access_token = &#x27;pytooter_usercred.secret&#x27;)</span><br><span class="line">mastodon.toot(&#x27;Tooting from Python using #mastodonpy !&#x27;)</span><br></pre></td></tr></table></figure>
+<p>If you can see a new toot, you succeed.</p>
+<p><em>2. Streaming</em><br>I recommend streaming API provided by Mastodon.py. If you can use it, try to use it. I failed. So I wrote this article XD.</p>
+<p><em>3. Something more</em></p>
+<p>You can check <a class="link"   target="_blank" rel="noopener" href="https://github.com/HikaruSama233/mastodon_autoreply_bot_template/blob/main/bot_template.py" >Full template<i class="fas fa-external-link-alt"></i></a> without wasting any time.</p>
+<p>If you want me to explain how to do…</p>
+<p>It is a combination of <code>Mastodon.notifications(mentions_only=True)</code>, <code>Mastodon.notifications_dismiss(notification_id)</code>, and <code>Mastodon.status_reply(to_status, status, in_reply_to_id=status_id)</code>. Putting all of them in a infinite loop, this bot will run forever. Do not forget to sleep every 1 second or 10 seconds. Be kind to the server of your Mastodon instance.</p>
+<p><em>3.1 Get a mentions</em><br>Basically you call <code>Mastodon.notifications(mentions_only=True)</code> to get all mentions, put all mentions (15 mentions at a time) into a queue (<code>list</code> in Python), then deal with them one by one in a for-loop.</p>
+<p>The data structure of notifications <code>dict</code> of <code>dict</code> in Python. A notification has <code>id</code> and <code>status</code> as its keys. A status has <code>id</code>, <code>account</code>, <code>mentions</code> etc. There are all kinds of information you need.</p>
+<p>Here is an example of a <code>notification</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &#x27;id&#x27;: 111,</span><br><span class="line">    &#x27;type&#x27;: &#x27;mention&#x27;,</span><br><span class="line">    &#x27;created_at&#x27;: datetime.datetime(),</span><br><span class="line">    &#x27;account&#x27;: &#123;&#x27;id&#x27;:222, &#x27;bot&#x27;: False, ...&#125;</span><br><span class="line">    &#x27;status&#x27;:&#123;</span><br><span class="line">        &#x27;id&#x27;:333,</span><br><span class="line">        &#x27;created_at&#x27;: datetime.datetime(),</span><br><span class="line">        &#x27;in_reply_to_id&#x27;: None,</span><br><span class="line">        &#x27;content&#x27;: &#x27;&lt;p&gt;some text&lt;/p&gt;&#x27;</span><br><span class="line">        &#x27;account&#x27;: &#123;&#x27;id&#x27;:222, &#x27;bot&#x27;: False, ...&#125;</span><br><span class="line">        &#x27;mentions&#x27;: [&#123;&#x27;id&#x27;:444&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">status = notification[&#x27;status&#x27;]   # dict</span><br><span class="line">notification_id = notification[&#x27;id&#x27;]   # int</span><br><span class="line">status_id = status[&#x27;id&#x27;]   # int</span><br></pre></td></tr></table></figure>
+<p>The text in obj[‘status’][‘content’] is HTML formated. You need to use <code>BeautifulSoup</code> or <code>html2text</code> to clean it.</p>
+<p><em>3.2 Finish a mention</em><br>If you read a mentions, call <code>Mastodon.notifications_dismiss(notification_id)</code> to dismiss the mention. It guarantees this mention will not be reached next time. But you cannot find it either.</p>
+<p><em>3.3 Reply a status</em><br>Call <code>Mastodon.status_reply(to_status, status, in_reply_to_id=status_id)</code> to reply to the status. The second <code>status</code> could be a <code>str</code>.</p>
+<p>※ Remember to use <code>try</code>, <code>except</code> to avoid status not found error! If someone delete the toot before you reply, you will get this error. If you forget to catch this error, the program will crash. </p>
+<p><em>3.4 Reply to not bot</em><br>Be aware of the bot account. You can find this info in account[‘bot’]. If this value is <code>True</code>, be silent.</p>
+<h2 id="Run-it-in-backend-by-Screen"><a href="#Run-it-in-backend-by-Screen" class="headerlink" title="Run it in backend by Screen"></a>Run it in backend by Screen</h2><ol>
+<li>Create a bot environment<blockquote>
+<p>screen -S bot_env</p>
+</blockquote>
+</li>
+<li>Detach current screen<blockquote>
+<p>Ctrl+A+D</p>
+</blockquote>
+</li>
+<li>Check all screens and find the process id<blockquote>
+<p>screen -ls</p>
+</blockquote>
+</li>
+<li>Enter bot_env<blockquote>
+<p>screen -r processid_of_bot_env</p>
+</blockquote>
+</li>
+<li>Destroy a env<blockquote>
+<p>kill processid_of_bot_env</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>beloved caocao: <a class="link"   target="_blank" rel="noopener" href="https://github.com/TheTarr/mastodon_bot" >https://github.com/TheTarr/mastodon_bot<i class="fas fa-external-link-alt"></i></a><br>Doc of Mastodon.py: <a class="link"   target="_blank" rel="noopener" href="https://mastodonpy.readthedocs.io/en/stable/" >https://mastodonpy.readthedocs.io/en/stable/<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
 
@@ -217,7 +269,7 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/Bugfix/">#Bugfix</a>&nbsp;
+                        <a href="/tags/Mastodon/">#Mastodon</a>&nbsp;
                     </li>
                 
             </ul>
@@ -226,29 +278,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/05/22/simplest-flutter-sqlite-app/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">The simplest app for combining flutter and sqlite</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/04/30/additional-config-for-hexo/"
+                           href="/2022/05/22/simplest-flutter-sqlite-app/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Additional Configurations for Hexo</span>
+                                <span class="post-nav-title-item">The simplest app for combining flutter and sqlite</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -434,7 +471,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Prerequests"><span class="nav-number">1.</span> <span class="nav-text">Prerequests</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-packages"><span class="nav-number">2.</span> <span class="nav-text">Install packages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Time-to-code"><span class="nav-number">3.</span> <span class="nav-text">Time to code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Run-it-in-backend-by-Screen"><span class="nav-number">4.</span> <span class="nav-text">Run it in backend by Screen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">5.</span> <span class="nav-text">References</span></a></li></ol>
     </div>
 </div>
         </aside>
