@@ -286,7 +286,7 @@
 <p>其中我们最关心的嘟文存在 <code>obj[&#39;status&#39;][&#39;content&#39;]</code> 里，它的结构是一个 HTML 树. 嫌麻烦的话你可以用 <code>BeautifulSoup</code> or <code>html2text</code> 里的一些函数去解析它，不嫌麻烦的话你也可以自己写一个正则表达式把它 sub 掉。提取到嘟文之后要怎么回复就看你的了。</p>
 <h4 id="回复一个嘟"><a href="#回复一个嘟" class="headerlink" title="回复一个嘟"></a>回复一个嘟</h4><p>调用这个函数来回复： <code>Mastodon.status_reply(to_status, status, in_reply_to_id=status_id)</code> to reply to the status. 这里面的 <code>status</code> 可以是一个字符串。第一个 <code>to_status</code> 就是你要回复的那个 status ，它是个 <code>dict</code>。</p>
 <p>※ 有时候等你回复的时候原始的那条嘟已经被删掉了，这时候系统就会给你抛出一个嘟文不存在的 error。 所以这边要注意多用 <code>try: except</code>，不然你的进程会挂掉的。</p>
-<h4 id="不要给-bot-回复"><a href="#不要给-bot-回复" class="headerlink" title="不要给 bot 回复"></a>不要给 bot 回复</h4><p>想当年……总之为了避免出现两个 bot 无限聊天的危机事件，记得在代码中加上这样的判断。一个账号如果是 bot 的话它的 <code>account[&#39;bot] == True</code> 。</p>
+<h4 id="不要给-bot-回复"><a href="#不要给-bot-回复" class="headerlink" title="不要给 bot 回复"></a>不要给 bot 回复</h4><p>想当年……总之为了避免出现两个 bot 无限聊天的危机事件，记得在代码中加上这样的判断。一个账号如果是 bot 的话它的 <code>account[&#39;bot&#39;] == True</code> 。</p>
 <h4 id="已读"><a href="#已读" class="headerlink" title="已读"></a>已读</h4><p>如果已经对一个嘟执行完了操作，调用 <code>Mastodon.notifications_dismiss(notification_id)</code> 把这个 mention 忽略掉。这样能保证你下次再查看 notifacations 的时候就看不到它了。但是这样一来你即使在网页版里打开自己的 notifacations 列表也看不到它了，除非你从自己的回复里看。目前也没有更优雅的办法标记已读了就这样吧……我不想在本地写一个文件。</p>
 <h2 id="后台执行这个文件"><a href="#后台执行这个文件" class="headerlink" title="后台执行这个文件"></a>后台执行这个文件</h2><p>就是 Screen 的基础用法这样…… nohup 理论上也可以，看你自己喜好吧</p>
 <ol>
