@@ -9,7 +9,7 @@
     
     <title>
         
-            pyinstaller - No module named &#39;scipy.spatial.transform._rotation_groups&#39; |
+            Make GCC by hand for CentOS7 |
         
         A Segmentation Fault
     </title>
@@ -144,7 +144,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">pyinstaller - No module named &#39;scipy.spatial.transform._rotation_groups&#39;</span>
+            <span class="title-hover-animation">Make GCC by hand for CentOS7</span>
         </div>
 
         
@@ -161,8 +161,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-05-18 01:22:58</span>
-        <span class="mobile">2022-05-18 01:22</span>
+        <span class="pc">2024-10-20 22:10:34</span>
+        <span class="mobile">2024-10-20 22:10</span>
     </span>
     
     
@@ -171,7 +171,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Bugfix/">Bugfix</a>&nbsp;
+                        <a href="/tags/GCC/">GCC</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/CentOS/">CentOS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Linux/">Linux</a>&nbsp;
                     </li>
                 
             </ul>
@@ -194,20 +202,28 @@
         
 
         <div class="article-content markdown-body">
-            <p>Today I tried to pack my simple python script with <code>pyinstaller</code> in Windows, and I found this error</p>
-<blockquote>
-<p>ModuleNotFoundError: No module named ‘scipy.spatial.transform._rotation_groups’</p>
-</blockquote>
-<p>The reason for this error is explained here</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/pyinstaller/pyinstaller/issues/5440#issuecomment-753600979" >https://github.com/pyinstaller/pyinstaller/issues/5440#issuecomment-753600979<i class="fas fa-external-link-alt"></i></a> </p>
-<blockquote>
-<p>The problem is that <code>scipy.spatial.transform.rotation</code> is a compiled module, so its dependencies (in this case <code>scipy.spatial.transform._rotation_groups</code>) are not automatically picked up by dependency analysis.</p>
-<p>Adding <code>scipy.spatial.transform._rotation_groups</code> to <code>hiddenimports</code>, either in your <code>.spec</code> file or via <code>--hiddenimport</code> command-line switch should fix the problem.</p>
-</blockquote>
-<p>Here is a solution</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/pyinstaller/pyinstaller/issues/5454" >https://github.com/pyinstaller/pyinstaller/issues/5454<i class="fas fa-external-link-alt"></i></a> </p>
-<p>I realized that these two issues were closed. The simplest way to solve this problem is upgrading my <code>pyinstaller</code> to its  <em>latest</em> version (now is <code>5.0.1</code>).</p>
-<p>Problem solved.</p>
+            <p>In some cases, my Linux server cannot connect to the Internet while I have to upgrade the GCC on that server to use C++17 or higher. Unlike CMAKE, I have nowhere to download the prebuild binary version of the GCC. The only way is to upload all the necessary files and make them one by one.</p>
+<p>Sounds boring. Here is what I did. I make notes about the steps incase I need it again.</p>
+<h2 id="0-Find-a-mirror"><a href="#0-Find-a-mirror" class="headerlink" title="0. Find a mirror"></a>0. Find a mirror</h2><h2 id="1-Download-all-related-files"><a href="#1-Download-all-related-files" class="headerlink" title="1. Download all related files"></a>1. Download all related files</h2><p>When you need to make GCC, you have to make some other libraries first. They are <code>gmp-x.x.x.tar.gz</code>, <code>mpfr-x.x.x-tar.gz</code>, <code>mpc-x.x.x.tar.gz</code> and of course you need <code>gcc-x.x.x.tar.gz</code> itself.</p>
+<p>There are dependencies. Make sure to check the release date of all versions of libraries. The release date from early to late should be <code>gmp</code> &lt; <code>mpfr</code> &lt; <code>mpc</code> &lt; <code>gcc</code>.</p>
+<h2 id="2-make-gmp"><a href="#2-make-gmp" class="headerlink" title="2. make gmp"></a>2. make gmp</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar xzf gmp-x.x.x.tar.gz</span><br><span class="line"><span class="built_in">cd</span> gmp-x.x.x</span><br><span class="line">./configure --prefix=/path/to/gmp-x.x.x</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-make-mpfr"><a href="#3-make-mpfr" class="headerlink" title="3. make mpfr"></a>3. make mpfr</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar xzf mpfr-x.x.x.tar.gz</span><br><span class="line"><span class="built_in">cd</span> mpfr-x.x.x</span><br><span class="line">./configure --prefix=/path/to/mpfr-x.x.x --with-gmp=/path/to/gmp-x.x.x</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h2 id="4-make-mpc"><a href="#4-make-mpc" class="headerlink" title="4. make mpc"></a>4. make mpc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar xzf mpc-x.x.x.tar.gz</span><br><span class="line"><span class="built_in">cd</span> mpc-x.x.x</span><br><span class="line">./configure --prefix=/path/to/mpc-x.x.x --with-gmp=/path/to/gmp-x.x.x --with-mpfr=/path/to/mpfr-x.x.x</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-set-LD-LIBRARY-PATH"><a href="#5-set-LD-LIBRARY-PATH" class="headerlink" title="5. set LD_LIBRARY_PATH"></a>5. set LD_LIBRARY_PATH</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/path/to/mpc-x.x.x/lib:/path/to/gmp-x.x.x/lib:/path/to/mpfr-x.x.x/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-make-gcc"><a href="#6-make-gcc" class="headerlink" title="6. make gcc"></a>6. make gcc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar xzf gcc-x.x.x.tar.gz</span><br><span class="line"><span class="built_in">cd</span> gcc-x.x.x</span><br><span class="line">./configure --prefix=/path/to/gcc-x.x.x --with-mpc=/path/to/mpc-x.x.x --with-gmp=/path/to/gmp-x.x.x --with-mpfr=/path/to/mpfr-x.x.x --disable-multilib</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>Be patient. It takes 4-8 hours.</p>
+<h2 id="7-many-exports"><a href="#7-many-exports" class="headerlink" title="7. many exports"></a>7. many exports</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=/path/to/gcc-x.x.x/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/path/to/gcc-x.x.x/lib64:<span class="variable">$LD_LIBRARY_PATH</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-Check-if-installed-successfully"><a href="#8-Check-if-installed-successfully" class="headerlink" title="8. Check if installed successfully"></a>8. Check if installed successfully</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc --version</span><br></pre></td></tr></table></figure>
+
+<p>Now everything is finished. Congratulations.</p>
+<h2 id="FYI-How-to-install-cmake"><a href="#FYI-How-to-install-cmake" class="headerlink" title="FYI How to install cmake"></a>FYI How to install cmake</h2><p>Without Internet.</p>
+<p>Go to CMake website and download file like this <code>cmake-x.xx.x-linux-x86_64.tar.gz</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf cmake-x.xx.x-linux-x86_64.tar.gz</span><br><span class="line"><span class="built_in">mv</span> cmake-x.xx.x /usr/local/cmake</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export PATH=&quot;/usr/local/cmake/bin:$PATH&quot;&#x27;</span>&gt;&gt;~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line">cmake --version</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -217,7 +233,15 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/Bugfix/">#Bugfix</a>&nbsp;
+                        <a href="/tags/GCC/">#GCC</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/CentOS/">#CentOS</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Linux/">#Linux</a>&nbsp;
                     </li>
                 
             </ul>
@@ -226,29 +250,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/05/22/simplest-flutter-sqlite-app/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">The simplest app for combining flutter and sqlite</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/04/30/additional-config-for-hexo/"
+                           href="/2023/03/24/Build-an-auto-reply-Mastodon-Bot/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Additional Configurations for Hexo</span>
+                                <span class="post-nav-title-item">Build an auto-reply Mastodon Bot</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -434,7 +443,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-Find-a-mirror"><span class="nav-number">1.</span> <span class="nav-text">0. Find a mirror</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Download-all-related-files"><span class="nav-number">2.</span> <span class="nav-text">1. Download all related files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-make-gmp"><span class="nav-number">3.</span> <span class="nav-text">2. make gmp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-make-mpfr"><span class="nav-number">4.</span> <span class="nav-text">3. make mpfr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-make-mpc"><span class="nav-number">5.</span> <span class="nav-text">4. make mpc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-set-LD-LIBRARY-PATH"><span class="nav-number">6.</span> <span class="nav-text">5. set LD_LIBRARY_PATH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-make-gcc"><span class="nav-number">7.</span> <span class="nav-text">6. make gcc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-many-exports"><span class="nav-number">8.</span> <span class="nav-text">7. many exports</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Check-if-installed-successfully"><span class="nav-number">9.</span> <span class="nav-text">8. Check if installed successfully</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FYI-How-to-install-cmake"><span class="nav-number">10.</span> <span class="nav-text">FYI How to install cmake</span></a></li></ol>
     </div>
 </div>
         </aside>

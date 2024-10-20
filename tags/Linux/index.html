@@ -9,7 +9,7 @@
     
     <title>
         
-            pyinstaller - No module named &#39;scipy.spatial.transform._rotation_groups&#39; |
+            Tag: Linux |
         
         A Segmentation Fault
     </title>
@@ -75,7 +75,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class=""
+                            <a class="active"
                                href="/tags"
                             >
                                 TAGS
@@ -116,7 +116,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class=""
+                    <a class="active"
                        href="/tags">TAGS</a>
                 </li>
             
@@ -141,183 +141,42 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="article-content-container">
-
-        <div class="article-title">
-            <span class="title-hover-animation">pyinstaller - No module named &#39;scipy.spatial.transform._rotation_groups&#39;</span>
+    <div class="tag-container">
+        <div class="tag-name"><i class="fas fa-tag"></i>&nbsp;Linux
         </div>
-
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/logo.svg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">Flu</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-05-18 01:22:58</span>
-        <span class="mobile">2022-05-18 01:22</span>
-    </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/Bugfix/">Bugfix</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        
-
-        <div class="article-content markdown-body">
-            <p>Today I tried to pack my simple python script with <code>pyinstaller</code> in Windows, and I found this error</p>
-<blockquote>
-<p>ModuleNotFoundError: No module named ‘scipy.spatial.transform._rotation_groups’</p>
-</blockquote>
-<p>The reason for this error is explained here</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/pyinstaller/pyinstaller/issues/5440#issuecomment-753600979" >https://github.com/pyinstaller/pyinstaller/issues/5440#issuecomment-753600979<i class="fas fa-external-link-alt"></i></a> </p>
-<blockquote>
-<p>The problem is that <code>scipy.spatial.transform.rotation</code> is a compiled module, so its dependencies (in this case <code>scipy.spatial.transform._rotation_groups</code>) are not automatically picked up by dependency analysis.</p>
-<p>Adding <code>scipy.spatial.transform._rotation_groups</code> to <code>hiddenimports</code>, either in your <code>.spec</code> file or via <code>--hiddenimport</code> command-line switch should fix the problem.</p>
-</blockquote>
-<p>Here is a solution</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/pyinstaller/pyinstaller/issues/5454" >https://github.com/pyinstaller/pyinstaller/issues/5454<i class="fas fa-external-link-alt"></i></a> </p>
-<p>I realized that these two issues were closed. The simplest way to solve this problem is upgrading my <code>pyinstaller</code> to its  <em>latest</em> version (now is <code>5.0.1</code>).</p>
-<p>Problem solved.</p>
-
-        </div>
-
-        
-
-        
-            <ul class="post-tags-box">
-                
-                    <li class="tag-item">
-                        <a href="/tags/Bugfix/">#Bugfix</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/05/22/simplest-flutter-sqlite-app/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">The simplest app for combining flutter and sqlite</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2022/04/30/additional-config-for-hexo/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Additional Configurations for Hexo</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;Comments</i>
-    </div>
-    
-
-        
+        <div class="tag-post-list">
             
-    <div id="gitalk-container"></div>
-    <script 
-            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
-    <script >
-
-        function loadGitalk() {
-            let __gitalk__pathname = decodeURI(location.pathname);
-            const __gitalk__pathnameLength = __gitalk__pathname.length;
-            const __gitalk__pathnameMaxLength = 50;
-            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
-                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
-            }
-
-            try {
-                Gitalk && new Gitalk({
-                    clientID: '7bc060262774e526baa5',
-                    clientSecret: '6442d0600b3c9fb5f239801ce8966209453c6a83',
-                    repo: 'blog_comments',
-                    owner: 'restinpease',
-                    admin: ['restinpease'],
-                    id: __gitalk__pathname,
-                    language: 'en'
-                }).render('gitalk-container');
-
-            } catch (e) {
-                window.Gitalk = null;
-            }
-        }
-
-        if ('false') {
-            const loadGitalkTimeout = setTimeout(() => {
-                loadGitalk();
-                clearTimeout(loadGitalkTimeout);
-            }, 1000);
-        } else {
-            window.addEventListener('DOMContentLoaded', loadGitalk);
-        }
-    </script>
-
-
-
-        
+<div class="archive-list-container">
+    
+        <section class="archive-item">
+            <div class="archive-item-header">
+                <span class="archive-year">2024</span>
+                <span class="archive-year-post-count">[1]</span>
+            </div>
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2024/10/21/Make-GCC-by-hand-for-CentOS7/"
+                        >Make GCC by hand for CentOS7</a>
+                        <span class="article-date">10-20</span>
+                    </li>
+                
+            </ul>
+        </section>
     
 </div>
 
-            </div>
-        
+        </div>
+    </div>
+
+    <div class="tag-paginator">
+        <div class="paginator">
+    
+
+    
+</div>
+
     </div>
 </div>
 
@@ -365,27 +224,6 @@
     </div>
 
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-            <li class="go-comment">
-                <i class="fas fa-comment"></i>
-            </li>
-        
-    </ul>
-</div>
-
-        </div>
-    
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
@@ -431,14 +269,6 @@
     </div>
 
     
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        
-    </div>
-</div>
-        </aside>
-    
 
     <div class="image-viewer-container">
     <img src="">
@@ -470,14 +300,6 @@
 
 
 <div class="post-scripts">
-    
-        
-<script src="/js/left-side-toggle.js"></script>
-
-<script src="/js/libs/anime.min.js"></script>
-
-<script src="/js/toc.js"></script>
-
     
 </div>
 
